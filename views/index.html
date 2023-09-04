@@ -30,9 +30,9 @@
                   viewBox="0 0 24 24">
                   <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                 </svg></button>
-              <input class="w-full pl-4 text-sm outline-none focus:outline-none bg-transparent" type="search"
-                name="search" placeholder="Име на документ/лек/протокол" hx-post="/search"
-                hx-trigger="keyup changed delay:100ms, search, load" hx-target="#search-results"
+              <input autocomplete="off" class="w-full pl-4 text-sm outline-none focus:outline-none bg-transparent"
+                type="search" name="search" placeholder="Име на документ/лек/протокол" hx-post="/search"
+                hx-trigger="keyup changed delay:100ms, search" hx-target="#search-results"
                 hx-indicator=".htmx-indicator">
             </div>
           </div>

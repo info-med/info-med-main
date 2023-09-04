@@ -10,9 +10,40 @@ import (
 	"github.com/meilisearch/meilisearch-go"
 )
 
+type HtmlReturnResult struct {
+	Documents []Document
+	Drugs     []DrugInfo
+}
+
 type Document struct {
 	Name string `json:"name"`
 	Url  string `json:"url"`
+}
+
+type DrugInfo struct {
+	CyrillicName         string
+	LatinName            string
+	GenericName          string
+	EANCode              string
+	ATC                  string
+	Form                 string
+	Strength             string
+	Packaging            string
+	Content              string
+	IssuanceMethod       string
+	Warnings             string
+	Manufacturer         string
+	PlaceOfManufacturing string
+	ApprovalHolder       string
+	SolutionNumber       string
+	SolutionDate         string
+	ValidityDate         string
+	RetailPrice          string
+	WholesalePrice       string
+	ReferencePrice       string
+	FundPin              string
+	UserGuide            string
+	SummaryReport        string
 }
 
 func main() {
@@ -34,23 +65,47 @@ func main() {
 		r.ParseForm()
 		query := r.Form.Get("search")
 
-		searchRes, err := client.Index("evidence-based-medicine").Search(query,
-			&meilisearch.SearchRequest{
-				Limit: 6,
-			})
-		if err != nil {
-			fmt.Println(err)
-			os.Exit(1)
+		// The current Meilisearch Go package doesn't support MultiSearch so we need to hack it together until
+		// we find a better way to do this (or just fork the package and fix it ourselves, but no time now)
+		if query != "" {
+			searchRes, err := client.Index("evidence-based-medicine").Search(query,
+				&meilisearch.SearchRequest{
+					Limit: 6,
+				})
+			if err != nil {
+				fmt.Println(err)
+				os.Exit(1)
+			}
+
+			// Extremely wasteful since JSON, work it out with a decoder
+			results := searchRes.Hits
+			var documents []Document
+			jsonString, _ := json.Marshal(results)
+			json.Unmarshal(jsonString, &documents)
+
+			// Search drugs
+			searchRes, err = client.Index("drug-registry").Search(query,
+				&meilisearch.SearchRequest{
+					Limit: 6,
+				})
+			if err != nil {
+				fmt.Println(err)
+				os.Exit(1)
+			}
+
+			// Extremely wasteful since JSON, work it out with a decoder
+			results = searchRes.Hits
+			var drugs []DrugInfo
+			jsonString, _ = json.Marshal(results)
+			json.Unmarshal(jsonString, &drugs)
+
+			HtmlReturnResult := HtmlReturnResult{
+				Documents: documents,
+				Drugs:     drugs,
+			}
+			tmpl := template.Must(template.ParseFiles("views/searchResult.html"))
+			tmpl.Execute(w, HtmlReturnResult)
 		}
-
-		// Extremely wasteful since JSON, work it out with a decoder
-		results := searchRes.Hits
-		var documents []Document
-		jsonString, _ := json.Marshal(results)
-		json.Unmarshal(jsonString, &documents)
-
-		tmpl := template.Must(template.ParseFiles("views/searchResult.html"))
-		tmpl.Execute(w, documents)
 	})
 
 	http.ListenAndServe(":8080", nil)
