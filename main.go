@@ -1,15 +1,22 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
-	"github.com/meilisearch/meilisearch-go"
 	"html/template"
 	"net/http"
 	"os"
+
+	"github.com/meilisearch/meilisearch-go"
 )
 
+type Document struct {
+	Name string `json:"name"`
+	Url  string `json:"url"`
+}
+
 func main() {
-	fmt.Println("Starting server")
+	fmt.Println("Started Server")
 	client := meilisearch.NewClient(meilisearch.ClientConfig{
 		Host:   "http://127.0.0.1:7700",
 		APIKey: "masterKey",
@@ -29,15 +36,21 @@ func main() {
 
 		searchRes, err := client.Index("evidence-based-medicine").Search(query,
 			&meilisearch.SearchRequest{
-				Limit: 8,
+				Limit: 6,
 			})
 		if err != nil {
 			fmt.Println(err)
 			os.Exit(1)
 		}
 
+		// Extremely wasteful since JSON, work it out with a decoder
+		results := searchRes.Hits
+		var documents []Document
+		jsonString, _ := json.Marshal(results)
+		json.Unmarshal(jsonString, &documents)
+
 		tmpl := template.Must(template.ParseFiles("views/searchResult.html"))
-		tmpl.Execute(w, searchRes.Hits)
+		tmpl.Execute(w, documents)
 	})
 
 	http.ListenAndServe(":8080", nil)

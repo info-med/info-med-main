@@ -10,17 +10,41 @@
   <link href="public/output.css" rel="stylesheet">
 </head>
 
-<body>
-  <span class="htmx-indicator">
-    Searching...
-  </span>
+<body class="bg-gray-100">
+  <div class="main">
+    <div class="px-4 sm:px-8 lg:px-16 xl:px-20 mx-auto">
+      <!-- hero -->
+      <div class="hero">
+        <!-- hero headline -->
+        <div class="hero-headline flex flex-col items-center justify-center pt-24 text-center">
+          <h1 class=" font-bold text-3xl text-gray-900">Пребарај низ сите податоци</h1>
+          <p class="htmx-indicator font-base text-base text-gray-600">Се вчитува...</p>
+        </div>
 
-  <input class="form-control" type="search" name="search" placeholder="Begin Typing To Search Users..."
-    hx-post="/search" hx-trigger="keyup changed delay:500ms, search" hx-target="#search-results"
-    hx-indicator=".htmx-indicator">
-  <div id="search-results"></div>
-  <!-- input tuka -->
-  <!-- htmx response tuka -->
+        <!-- image search box -->
+        <div class="box pt-6">
+          <div class="box-wrapper">
+            <div class=" bg-white rounded flex items-center w-full p-3 shadow-sm border border-gray-200">
+              <button class="outline-none focus:outline-none"><svg class=" w-5 text-gray-600 h-5 cursor-pointer"
+                  fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor"
+                  viewBox="0 0 24 24">
+                  <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg></button>
+              <input class="w-full pl-4 text-sm outline-none focus:outline-none bg-transparent" type="search"
+                name="search" placeholder="Име на документ/лек/протокол" hx-post="/search"
+                hx-trigger="keyup changed delay:100ms, search, load" hx-target="#search-results"
+                hx-indicator=".htmx-indicator">
+            </div>
+          </div>
+        </div>
+
+        <div id="search-results" class="my-5 grid grid-cols-1 md:grid-cols-2 gap-10">
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </body>
 
 </html>
