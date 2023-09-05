@@ -11,8 +11,15 @@ import (
 )
 
 type HtmlReturnResult struct {
-	Documents []Document
-	Drugs     []DrugInfo
+	Documents  []Document
+	Drugs      []DrugInfo
+	Drugstores []Drugstore
+}
+
+type Drugstore struct {
+	Name         string
+	Address      string
+	Municipality string
 }
 
 type Document struct {
@@ -100,9 +107,26 @@ func main() {
 			jsonString, _ = json.Marshal(results)
 			json.Unmarshal(jsonString, &drugs)
 
+			// Search drugstores
+			searchRes, err = client.Index("drugstore-registry").Search(query,
+				&meilisearch.SearchRequest{
+					Limit: 2,
+				})
+			if err != nil {
+				fmt.Println(err)
+				os.Exit(1)
+			}
+
+			// Extremely wasteful since JSON, work it out with a decoder
+			results = searchRes.Hits
+			var drugstores []Drugstore
+			jsonString, _ = json.Marshal(results)
+			json.Unmarshal(jsonString, &drugstores)
+
 			HtmlReturnResult := HtmlReturnResult{
-				Documents: documents,
-				Drugs:     drugs,
+				Documents:  documents,
+				Drugs:      drugs,
+				Drugstores: drugstores,
 			}
 			tmpl := template.Must(template.ParseFiles("views/searchResult.html"))
 			tmpl.Execute(w, HtmlReturnResult)
