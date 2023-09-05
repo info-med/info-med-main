@@ -4,24 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://unpkg.com/htmx.org@1.9.5"
-    integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO"
-    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/htmx.org@latest"></script>
+  <script src="//unpkg.com/alpinejs" defer></script>
   <link href="public/output.css" rel="stylesheet">
 </head>
 
 <body class="bg-gray-100">
   <div class="main">
+    <div id="modal-main"></div>
     <div class="px-4 sm:px-8 lg:px-16 xl:px-20 mx-auto">
-      <!-- hero -->
       <div class="hero">
-        <!-- hero headline -->
         <div class="hero-headline flex flex-col items-center justify-center pt-24 text-center">
-          <h1 class=" font-bold text-3xl text-gray-900">Пребарај низ сите податоци</h1>
+          <h1 class="font-bold text-3xl text-gray-900">Пребарај низ сите податоци</h1>
           <p class="htmx-indicator font-base text-base text-gray-600">Се вчитува...</p>
         </div>
-
-        <!-- image search box -->
         <div class="box pt-6">
           <div class="box-wrapper">
             <div class=" bg-white rounded flex items-center w-full p-3 shadow-sm border border-gray-200">
@@ -37,14 +33,11 @@
             </div>
           </div>
         </div>
-
         <div id="search-results" class="my-5 grid grid-cols-1 md:grid-cols-2 gap-10">
         </div>
-
       </div>
     </div>
   </div>
-
 </body>
 
 </html>

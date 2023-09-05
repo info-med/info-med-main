@@ -12,3 +12,4 @@ Stack:
 - Go v1.20
 - Tailwind (Compiled)
 - HTMX
+- AlpineJS

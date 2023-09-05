@@ -21,6 +21,7 @@ type Document struct {
 }
 
 type DrugInfo struct {
+	Id                   string
 	CyrillicName         string
 	LatinName            string
 	GenericName          string
@@ -106,6 +107,29 @@ func main() {
 			tmpl := template.Must(template.ParseFiles("views/searchResult.html"))
 			tmpl.Execute(w, HtmlReturnResult)
 		}
+	})
+
+	http.HandleFunc("/getDrugInfo", func(w http.ResponseWriter, r *http.Request) {
+		r.ParseForm()
+		query := r.Form.Get("drugId")
+
+		searchRes, err := client.Index("drug-registry").Search(query,
+			&meilisearch.SearchRequest{
+				Limit: 1,
+			})
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
+
+		results := searchRes.Hits
+		var drug []DrugInfo
+		jsonString, _ := json.Marshal(results)
+		json.Unmarshal(jsonString, &drug)
+
+		tmpl := template.Must(template.ParseFiles("views/drugModal.html"))
+		tmpl.Execute(w, drug)
+
 	})
 
 	http.ListenAndServe(":8080", nil)
