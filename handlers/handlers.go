@@ -140,8 +140,8 @@ func CreateSymposium(w http.ResponseWriter, r *http.Request, meilisearchClient *
 
 	if err != nil {
 		fmt.Println(err)
-		// Return error message to UI via htmx
+		// TODO Return error message to UI via htmx
 	}
 
-	// return success message to UI via htmx
+	// TODO return success message to UI via htmx
 }
