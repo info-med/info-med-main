@@ -13,3 +13,7 @@ Stack:
 - Tailwind (Compiled)
 - HTMX
 - AlpineJS
+
+- Todo
+- [ ] Додади GoFiber, templates се малку досадни за работа со stdlib net/templates, засреди FE, тргни се' живо од index.html
+- [ ] Има ко 0 security features, пред golive детално да се провери се'

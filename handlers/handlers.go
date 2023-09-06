@@ -3,10 +3,12 @@ package handlers
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/meilisearch/meilisearch-go"
-	"github.com/moe-zdravstvo/moe-zdravstvo-main/types"
 	"html/template"
 	"net/http"
+
+	"github.com/google/uuid"
+	"github.com/meilisearch/meilisearch-go"
+	"github.com/moe-zdravstvo/moe-zdravstvo-main/types"
 )
 
 func HandleHomePage(w http.ResponseWriter, r *http.Request) {
@@ -58,9 +60,26 @@ func HandleSearch(w http.ResponseWriter, r *http.Request, meilisearchClient *mei
 		json.Unmarshal(jsonString, &drugs)
 
 		// Search drugstores
+		searchRes, err = meilisearchClient.Index("symposium-registry").Search(query,
+			&meilisearch.SearchRequest{
+				Limit: 6,
+			})
+
+		if err != nil {
+			fmt.Println(err)
+			panic("Error")
+		}
+
+		// Extremely wasteful since JSON, work it out with a decoder
+		results = searchRes.Hits
+		var symposiums []types.Symposium
+		jsonString, _ = json.Marshal(results)
+		json.Unmarshal(jsonString, &symposiums)
+
+		// Search symposiums
 		searchRes, err = meilisearchClient.Index("drugstore-registry").Search(query,
 			&meilisearch.SearchRequest{
-				Limit: 2,
+				Limit: 6,
 			})
 
 		if err != nil {
@@ -78,6 +97,7 @@ func HandleSearch(w http.ResponseWriter, r *http.Request, meilisearchClient *mei
 			Documents:  documents,
 			Drugs:      drugs,
 			Drugstores: drugstores,
+			Symposiums: symposiums,
 		}
 		tmpl := template.Must(template.ParseFiles("views/searchResult.html"))
 		tmpl.Execute(w, HtmlReturnResult)
@@ -104,5 +124,24 @@ func HandleGetDrugInfo(w http.ResponseWriter, r *http.Request, meilisearchClient
 	json.Unmarshal(jsonString, &drug)
 	tmpl := template.Must(template.ParseFiles("views/drugModal.html"))
 	tmpl.Execute(w, drug)
+}
 
+func CreateSymposium(w http.ResponseWriter, r *http.Request, meilisearchClient *meilisearch.Client) {
+	r.ParseForm()
+	var symposium types.Symposium
+	symposium.Id = uuid.NewString()
+	symposium.Type = r.Form.Get("type")
+	symposium.Name = r.Form.Get("name")
+	symposium.Points = r.Form.Get("points")
+
+	symposiumIndex := meilisearchClient.Index("symposium-registry")
+
+	_, err := symposiumIndex.AddDocuments(symposium)
+
+	if err != nil {
+		fmt.Println(err)
+		// Return error message to UI via htmx
+	}
+
+	// return success message to UI via htmx
 }

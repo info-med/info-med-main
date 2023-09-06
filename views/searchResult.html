@@ -1,3 +1,19 @@
+{{ range $symposium := .Symposiums }}
+<div class="p-6 bg-white border border-gray-200 rounded-lg shadow">
+  <div href="#">
+    <div>
+      <p class="text-gray-700 text-sm">
+        Извор: Внесено во МоеЗдравство
+      </p>
+      <hr />
+      <h5 class="my-2 text-2xl font-bold tracking-tight text-gray-900">{{ $symposium.Name }}</h5>
+      <p class="text-sm text-gray-500">Тип: {{ $symposium.Type }}</p>
+      <p class="text-sm text-gray-500">Добиени бодови: {{ $symposium.Points }}</p>
+    </div>
+  </div>
+</div>
+{{ end }}
+
 {{ range $drug := .Drugs }}
 <div class="p-6 bg-white border border-gray-200 rounded-lg shadow">
   <div href="#">

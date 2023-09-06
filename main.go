@@ -24,5 +24,13 @@ func main() {
 	http.HandleFunc("/getDrugInfo", func(w http.ResponseWriter, r *http.Request) {
 		handlers.HandleGetDrugInfo(w, r, meilisearchClient)
 	})
+
+	// Renderers
+	http.HandleFunc("/renderIndex", handlers.RenderSearch)
+	http.HandleFunc("/renderSymposium", handlers.RenderSymposium)
+	http.HandleFunc("/createSymposium", func(w http.ResponseWriter, r *http.Request) {
+		handlers.CreateSymposium(w, r, meilisearchClient)
+	})
+
 	http.ListenAndServe(":8080", nil)
 }
