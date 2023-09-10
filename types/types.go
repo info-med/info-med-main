@@ -7,7 +7,13 @@ type HtmlReturnResult struct {
 	Symposiums []Symposium
 }
 
+type User struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+
 type Drugstore struct {
+	Id           string
 	Name         string
 	Address      string
 	Municipality string

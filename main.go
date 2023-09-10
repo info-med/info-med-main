@@ -24,10 +24,16 @@ func main() {
 	http.HandleFunc("/getDrugInfo", func(w http.ResponseWriter, r *http.Request) {
 		handlers.HandleGetDrugInfo(w, r, meilisearchClient)
 	})
+	http.HandleFunc("/getDrugstoreInfo", func(w http.ResponseWriter, r *http.Request) {
+		handlers.HandleGetDrugstoreInfo(w, r, meilisearchClient)
+	})
 
 	// Renderers
 	http.HandleFunc("/renderIndex", handlers.RenderSearch)
 	http.HandleFunc("/renderSymposium", handlers.RenderSymposium)
+	http.HandleFunc("/renderAbout", handlers.RenderAbout)
+
+	// CRD Routes
 	http.HandleFunc("/createSymposium", func(w http.ResponseWriter, r *http.Request) {
 		handlers.CreateSymposium(w, r, meilisearchClient)
 	})

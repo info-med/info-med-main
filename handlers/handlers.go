@@ -59,7 +59,7 @@ func HandleSearch(w http.ResponseWriter, r *http.Request, meilisearchClient *mei
 		jsonString, _ = json.Marshal(results)
 		json.Unmarshal(jsonString, &drugs)
 
-		// Search drugstores
+		// Search symposiums
 		searchRes, err = meilisearchClient.Index("symposium-registry").Search(query,
 			&meilisearch.SearchRequest{
 				Limit: 6,
@@ -76,7 +76,7 @@ func HandleSearch(w http.ResponseWriter, r *http.Request, meilisearchClient *mei
 		jsonString, _ = json.Marshal(results)
 		json.Unmarshal(jsonString, &symposiums)
 
-		// Search symposiums
+		// Search drugstores
 		searchRes, err = meilisearchClient.Index("drugstore-registry").Search(query,
 			&meilisearch.SearchRequest{
 				Limit: 6,
@@ -102,6 +102,28 @@ func HandleSearch(w http.ResponseWriter, r *http.Request, meilisearchClient *mei
 		tmpl := template.Must(template.ParseFiles("views/searchResult.html"))
 		tmpl.Execute(w, HtmlReturnResult)
 	}
+}
+
+func HandleGetDrugstoreInfo(w http.ResponseWriter, r *http.Request, meilisearchClient *meilisearch.Client) {
+	r.ParseForm()
+	query := r.Form.Get("drugstoreId")
+
+	searchRes, err := meilisearchClient.Index("drugstore-registry").Search(query,
+		&meilisearch.SearchRequest{
+			Limit: 1,
+		})
+
+	if err != nil {
+		fmt.Println(err)
+		panic("Error")
+	}
+
+	results := searchRes.Hits
+	var drugstore []types.Drugstore
+	jsonString, _ := json.Marshal(results)
+	json.Unmarshal(jsonString, &drugstore)
+	tmpl := template.Must(template.ParseFiles("views/drugstoreModal.html"))
+	tmpl.Execute(w, drugstore)
 }
 
 func HandleGetDrugInfo(w http.ResponseWriter, r *http.Request, meilisearchClient *meilisearch.Client) {

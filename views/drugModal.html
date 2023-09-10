@@ -1,28 +1,227 @@
 {{ range $info := .}}
-<div x-data="{ 'showModal': true }" @keydown.escape="showModal = false">
-  <div class="fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-50"
-    x-show="showModal">
-    <div class="px-6 py-4 w-3/4 h-3/4 text-left bg-white rounded shadow-lg" @click.away="showModal = false"
-      x-transition:enter="motion-safe:ease-out duration-300" x-transition:enter-start="opacity-0 scale-90"
-      x-transition:enter-end="opacity-100 scale-100">
-      <div class="flex items-center justify-between">
-        <h5 class="mr-3 text-black max-w-none">Детални информации за {{ $info.CyrillicName }}</h5>
+<div @keydown.escape="showDrugModal = false; opacityLevel = '1'">
+  <div id="hs-modal-recover-account" x-show="showDrugModal; opacityLevel = '0.5'"
+    class="hs-overlay h-full fixed top-4 left-0 z-[60] overflow-y-auto w-full pb-10">
+    <div class="hs-overlay-open:mt-7 mt-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto">
+      <button type="button" class="z-50 cursor-pointer" @click="showDrugModal = false; opacityLevel = '1'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
 
-        <button type="button" class="z-50 cursor-pointer" @click="showModal = false">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
+      <div class="bg-white border border-blue-500 rounded-xl shadow-inner shadow-blue-400 pb-6">
+        <div class="p-4 sm:p-7">
+          <div class="text-center">
+            <h2 class="block text-2xl font-bold text-gray-800">{{ .CyrillicName }}</h2>
+          </div>
+
+          <div class="mt-5">
+            <p class="font-medium border-b-2 border-gray-100">Општи Информации</p>
+            <p>
+              <span class="font-bold">
+                Име на лекот (Кирилица):
+              </span>
+              <span class="text-gray-600">
+                {{ .CyrillicName }}
+              </span>
+            </p>
+            <p>
+              <span class="font-bold">
+                Име на лекот (Латиница):
+              </span>
+              <span class="text-gray-600">
+                {{ .LatinName }}
+              </span>
+            </p>
+            <p>
+              <span class="font-bold">
+                Генеричко име:
+              </span>
+              <span class="text-gray-600">
+                {{ .GenericName }}
+              </span>
+            </p>
+
+            <p>
+              <span class="font-bold">
+                Јачина:
+              </span>
+              <span class="text-gray-600">
+                {{ .Strength }}
+              </span>
+            </p>
+
+            <p>
+              <span class="font-bold">
+                Фармацевтска форма:
+              </span>
+              <span class="text-gray-600">
+                {{ .Form }}
+              </span>
+            </p>
+
+            <p>
+              <span class="font-bold">
+                Пакување:
+              </span>
+              <span class="text-gray-600">
+                {{ .Packaging }}
+              </span>
+            </p>
+
+            <p>
+              <span class="font-bold">
+                Состав:
+              </span>
+              <span class="text-gray-600">
+                {{ .Content }}
+              </span>
+            </p>
+
+            <p>
+              <span class="font-bold">
+                Начин на издавање:
+              </span>
+              <span class="text-gray-600">
+                {{ .IssuanceMethod }}
+              </span>
+            </p>
+
+            <p class="mt-4 font-medium border-b-2 border-gray-100">Детални Информации</p>
+            <p>
+              <span class="font-bold">
+                EAN код:
+              </span>
+              <span class="text-gray-600">
+                {{ .EANCode }}
+              </span>
+            </p>
+            <p>
+              <span class="font-bold">
+                АТЦ:
+              </span>
+              <span class="text-gray-600">
+                {{ .ATC }}
+              </span>
+            </p>
+            <p>
+              <span class="font-bold">
+                Производители:
+              </span>
+              <span class="text-gray-600">
+                {{ .Manufacturer }}
+              </span>
+            </p>
+            <p>
+              <span class="font-bold">
+                Носител на одобрение:
+              </span>
+              <span class="text-gray-600">
+                {{ .ApprovalHolder }}
+              </span>
+            </p>
+            <p>
+              <span class="font-bold">
+                Број на решение:
+              </span>
+              <span class="text-gray-600">
+                {{ .SolutionNumber }}
+              </span>
+            </p>
+            <p>
+              <span class="font-bold">
+                Датум на решение:
+              </span>
+              <span class="text-gray-600">
+                {{ .SolutionDate }}
+              </span>
+            </p>
+            <p>
+              <span class="font-bold">
+                Проширен АТЦ:
+              </span>
+              <span class="text-gray-600">
+                {{ .Packaging }}
+              </span>
+            </p>
+
+            <p class="mt-4 font-medium border-b-2 border-gray-100">Фонд</p>
+            <p>
+              <span class="font-bold">
+                Фондовска шифра:
+              </span>
+              <span class="text-gray-600">
+                {{ .FundPin }}
+              </span>
+            </p>
+
+            <p>
+              <span class="font-bold">
+                Малопродажна цена со ДДВ:
+              </span>
+              <span class="text-gray-600">
+                {{ .RetailPrice }}
+              </span>
+            </p>
+
+            <p>
+              <span class="font-bold">
+                Големопродажна цена без ДДВ:
+              </span>
+              <span class="text-gray-600">
+                {{ .WholesalePrice }}
+              </span>
+            </p>
+
+            <p>
+              <span class="font-bold">
+                Референтна цена:
+              </span>
+              <span class="text-gray-600">
+                {{ .ReferencePrice }}
+              </span>
+            </p>
+
+            <p class="mt-4 mb-4 font-medium border-b-2 border-gray-100">Документи</p>
+            <a class="group flex flex-col bg-gray-50 border shadow-sm rounded-xl hover:shadow-md transition" href="#">
+              <div class="p-4 md:p-5">
+                <div class="flex">
+                  <div class="grow ml-5">
+                    <h3 class="group-hover:text-blue-600 font-semibold text-gray-800">
+                      Превземи Упатство за Користење
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a class="mt-4 group flex flex-col bg-gray-50 border shadow-sm rounded-xl hover:shadow-md transition"
+              href="#">
+              <div class="p-4 md:p-5">
+                <div class="flex">
+                  <div class="grow ml-5">
+                    <h3 class="group-hover:text-blue-600 font-semibold text-gray-800">
+                      Превземи Збирен Извештај
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a class="mt-4 group flex flex-col bg-gray-50 border shadow-sm rounded-xl hover:shadow-md transition"
+              href="#">
+              <div class="p-4 md:p-5">
+                <div class="flex">
+                  <div class="grow ml-5">
+                    <h3 class="group-hover:text-blue-600 font-semibold text-gray-800">
+                      Провери Интеракција со Друг Лек
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
       </div>
-      <hr />
-
-      <p><span>Име на латиница:</span>{{ $info.LatinName }}</p>
-      <p><span>Генерично име:</span>{{ $info.GenericName }}</p>
-      <p><span>EAN код:</span>{{ $info.EANCode }}</p>
-      <p><span>Фармацевтска форма:</span>{{ $info.Form }}</p>
-      <p><span>Јачина:</span>{{ $info.Strength }}</p>
-      <p><span>Пакување:</span>{{ $info.Packaging }}</p>
     </div>
   </div>
 </div>
