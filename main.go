@@ -5,13 +5,14 @@ import (
 	"github.com/meilisearch/meilisearch-go"
 	"github.com/moe-zdravstvo/moe-zdravstvo-main/handlers"
 	"net/http"
+	"os"
 )
 
 func main() {
 	fmt.Println("Started Server")
 	meilisearchClient := meilisearch.NewClient(meilisearch.ClientConfig{
 		Host:   "http://127.0.0.1:7700",
-		APIKey: "masterKey",
+		APIKey: os.Getenv("MEILISEARCH_MASTER_KEY"),
 	})
 	fs := http.FileServer(http.Dir("public"))
 	http.Handle("/public/", http.StripPrefix("/public/", fs))
