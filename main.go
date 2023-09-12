@@ -39,5 +39,5 @@ func main() {
 		handlers.CreateSymposium(w, r, meilisearchClient)
 	})
 
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":9990", nil)
 }
