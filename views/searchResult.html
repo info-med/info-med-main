@@ -133,4 +133,34 @@
     {{ end }}
   </div>
   {{ end }}
+  {{ if and (not .Drugs) (not .Documents) (not .Drugstores) }}
+  <div class="bg-white rounded-lg col-span-2 text-left">
+    <p class="text-gray-700 p-2 flex items-start">
+      <span class="font-semibold text-gray-800 text-lg ml-4">
+        Нема резултати. Можете да пребарувате по:
+      </span>
+    </p>
+    <div class="text-sm text-gray-500 pl-6">
+      <p class="font-semibold text-md text-black pb-1">За лекови:</p>
+      <ul class="list-disc pb-4">
+        <li>Кирилично име на лекот</li>
+        <li>Латинично име на лекот</li>
+        <li>Генерика</li>
+        <li>Производител</li>
+        <li>Код во ФЗОМ</li>
+      </ul>
+      <p class="font-semibold text-md text-black pb-1">За аптеки:</p>
+      <ul class="list-disc pb-4">
+        <li>Име на аптеката</li>
+        <li>Половична Адреса (пр. Аминта)</li>
+        <li>Населба</li>
+      </ul>
+      <p class="font-semibold text-md text-black pb-1">За документи (Медицина заснована на докази):</p>
+      <ul class="list-disc pb-4">
+        <li>Името на документот</li>
+        <li>Клучни зборови (пр. хеморагија)</li>
+      </ul>
+    </div>
+  </div>
+  {{ end }}
 </div>
