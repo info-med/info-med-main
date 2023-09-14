@@ -1,12 +1,11 @@
 {{ range $info := .}}
-<div id="hs-large-modal" class="w-full h-full fixed top-0 left-0 z-[60] overflow-x-hidden overflow-y-auto mt-4"
-  x-show="opacityLevel = '0.2'">
+<div id="hs-large-modal" class="w-full h-full fixed top-0 left-0 z-[60] overflow-x-hidden overflow-y-auto mt-4">
   <div class="mt-0 ease-out transition-all lg:max-w-4xl lg:w-full m-3 lg:mx-auto">
     <div class="flex flex-col bg-white border rounded-xl ">
       <div class="flex justify-between items-center py-3 px-4 border-b">
         <button type="button"
           class="hs-dropdown-toggle inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded-md text-gray-500 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white transition-all text-sm"
-          data-hs-overlay="#hs-large-modal" @click="opacityLevel = '1'">
+          data-hs-overlay="#hs-large-modal">
           <span class="sr-only">Close</span>
           <svg class="w-3.5 h-3.5" width="8" height="8" viewBox="0 0 8 8" fill="none"
             xmlns="http://www.w3.org/2000/svg">
