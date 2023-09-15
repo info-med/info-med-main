@@ -32,7 +32,7 @@ func main() {
 	// Renderers
 	http.HandleFunc("/renderIndex", handlers.RenderSearch)
 	http.HandleFunc("/renderSymposium", handlers.RenderSymposium)
-	http.HandleFunc("/renderAbout", handlers.RenderAbout)
+	http.HandleFunc("/renderAboutUs", handlers.RenderAboutUs)
 
 	// CRD Routes
 	http.HandleFunc("/createSymposium", func(w http.ResponseWriter, r *http.Request) {

@@ -22,7 +22,7 @@ func RenderSymposium(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, data)
 }
 
-func RenderAbout(w http.ResponseWriter, r *http.Request) {
+func RenderAboutUs(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("views/about.html"))
 
 	// Check the docs for excecuting without data pls
