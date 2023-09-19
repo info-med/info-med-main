@@ -1,31 +1,17 @@
 package handlers
 
 import (
-	"html/template"
-	"net/http"
+	"github.com/gofiber/fiber/v2"
 )
 
-func RenderSearch(w http.ResponseWriter, r *http.Request) {
-	tmpl := template.Must(template.ParseFiles("views/search.html"))
-
-	// Check the docs for excecuting without data pls
-	data := map[string]string{}
-	tmpl.Execute(w, data)
-
+func RenderHomePage(c *fiber.Ctx) error {
+	return c.Render("index", fiber.Map{})
 }
 
-func RenderSymposium(w http.ResponseWriter, r *http.Request) {
-	tmpl := template.Must(template.ParseFiles("views/symposium.html"))
-
-	// Check the docs for excecuting without data pls
-	data := map[string]string{}
-	tmpl.Execute(w, data)
+func RenderSearchPage(c *fiber.Ctx) error {
+	return c.Render("search", fiber.Map{})
 }
 
-func RenderAboutUs(w http.ResponseWriter, r *http.Request) {
-	tmpl := template.Must(template.ParseFiles("views/about.html"))
-
-	// Check the docs for excecuting without data pls
-	data := map[string]string{}
-	tmpl.Execute(w, data)
+func RenderAboutUsPage(c *fiber.Ctx) error {
+	return c.Render("about", fiber.Map{})
 }

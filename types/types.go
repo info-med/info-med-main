@@ -4,7 +4,6 @@ type HtmlReturnResult struct {
 	Documents  []Document
 	Drugs      []DrugInfo
 	Drugstores []Drugstore
-	Symposiums []Symposium
 }
 
 type User struct {
@@ -49,11 +48,4 @@ type DrugInfo struct {
 	FundPin              string
 	UserGuide            string
 	SummaryReport        string
-}
-
-type Symposium struct {
-	Id     string
-	Type   string
-	Name   string
-	Points string
 }
