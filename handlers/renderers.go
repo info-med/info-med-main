@@ -5,7 +5,7 @@ import (
 )
 
 func RenderHomePage(c *fiber.Ctx) error {
-	return c.Render("index", fiber.Map{})
+	return c.Render("index", fiber.Map{}, "layouts/main")
 }
 
 func RenderSearchPage(c *fiber.Ctx) error {
