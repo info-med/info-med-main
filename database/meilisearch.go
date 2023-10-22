@@ -60,10 +60,28 @@ func Search(query string) types.HtmlReturnResult {
 	jsonString, _ = json.Marshal(results)
 	json.Unmarshal(jsonString, &drugstores)
 
+	// Search MKB10 Entries
+	searchRes, err = meilisearchClient.Index("temp-mkb-registry").Search(query,
+		&meilisearch.SearchRequest{
+			Limit: 6,
+		})
+
+	if err != nil {
+		fmt.Println(err)
+		panic("Error")
+	}
+
+	// Extremely wasteful since JSON, work it out with a decoder
+	results = searchRes.Hits
+	var mkbEntries []types.MKBEntry
+	jsonString, _ = json.Marshal(results)
+	json.Unmarshal(jsonString, &mkbEntries)
+
 	HtmlReturnResult := types.HtmlReturnResult{
 		Documents:  documents,
 		Drugs:      drugs,
 		Drugstores: drugstores,
+		MkbEntries: mkbEntries,
 	}
 
 	return HtmlReturnResult

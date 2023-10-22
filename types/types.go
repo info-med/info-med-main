@@ -4,6 +4,7 @@ type HtmlReturnResult struct {
 	Documents  []Document
 	Drugs      []DrugInfo
 	Drugstores []Drugstore
+	MkbEntries []MKBEntry
 }
 
 type User struct {
@@ -48,4 +49,9 @@ type DrugInfo struct {
 	FundPin              string
 	UserGuide            string
 	SummaryReport        string
+}
+
+type MKBEntry struct {
+	Ninja_column_2 string
+	Ninja_column_3 string
 }
