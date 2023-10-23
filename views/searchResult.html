@@ -1,4 +1,34 @@
 <div class="grid sm:grid-cols-1 md:grid-cols-5">
+  {{ if .MkbEntries }}
+  <div class="bg-white rounded-lg col-start-2 col-span-3 mt-6">
+    <p class="text-gray-700 p-2 flex items-start">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32px" height="32px"
+        viewBox="0 0 32 32" version="1.1">
+        <g id="surface1">
+          <path
+            style="fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:4;"
+            d="M 12.999023 3 L 8.200195 3 C 7.081055 3 6.518555 3 6.09082 3.216797 C 5.71582 3.410156 5.411133 3.714844 5.217773 4.092773 C 5.000977 4.520508 5.000977 5.080078 5.000977 6.199219 L 5.000977 17.800781 C 5.000977 18.919922 5.000977 19.479492 5.217773 19.907227 C 5.411133 20.285156 5.71582 20.589844 6.09082 20.783203 C 6.518555 21 7.081055 21 8.200195 21 L 12 21 M 12.999023 3 L 18.999023 9 M 12.999023 3 L 12.999023 7.400391 C 12.999023 7.959961 12.999023 8.241211 13.110352 8.455078 C 13.204102 8.642578 13.356445 8.794922 13.546875 8.891602 C 13.760742 9 14.039062 9 14.598633 9 L 18.999023 9 M 18.999023 9 L 18.999023 11.000977 M 19.268555 19.268555 L 21 21 M 20.000977 17.499023 C 20.000977 18.881836 18.881836 20.000977 17.499023 20.000977 C 16.119141 20.000977 15 18.881836 15 17.499023 C 15 16.119141 16.119141 15 17.499023 15 C 18.881836 15 20.000977 16.119141 20.000977 17.499023 Z M 20.000977 17.499023 "
+            transform="matrix(1.333333,0,0,1.333333,0,0)" />
+        </g>
+      </svg>
+      <span class="font-semibold text-gray-800 text-lg ml-4">
+        МКБ-10
+      </span>
+    </p>
+    <hr />
+    {{ range $entry := .MkbEntries }}
+    <div class="flex flex-col items-start p-2 border-b-2 border-gray-100 hover:bg-gray-50 hover:cursor-pointer">
+      <p>
+        <span class="text-md text-left font-semibold">{{ $entry.Ninja_column_2 }}</span>
+      </p>
+      <p>
+        <span class="text-sm text-left text-gray-700">{{ $entry.Ninja_column_3 }}</span>
+      </p>
+    </div>
+    {{ end }}
+  </div>
+  {{ end }}
+
   {{ if .Drugs }}
   <div class="bg-white rounded-lg col-start-2 col-span-3 mt-6">
     <p class="text-gray-700 p-2 flex items-start">
@@ -73,36 +103,6 @@
   </div>
   {{ end }}
 
-  {{ if .MkbEntries }}
-  <div class="bg-white rounded-lg col-start-2 col-span-3 mt-6">
-    <p class="text-gray-700 p-2 flex items-start">
-      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32px" height="32px"
-        viewBox="0 0 32 32" version="1.1">
-        <g id="surface1">
-          <path
-            style="fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:4;"
-            d="M 12.999023 3 L 8.200195 3 C 7.081055 3 6.518555 3 6.09082 3.216797 C 5.71582 3.410156 5.411133 3.714844 5.217773 4.092773 C 5.000977 4.520508 5.000977 5.080078 5.000977 6.199219 L 5.000977 17.800781 C 5.000977 18.919922 5.000977 19.479492 5.217773 19.907227 C 5.411133 20.285156 5.71582 20.589844 6.09082 20.783203 C 6.518555 21 7.081055 21 8.200195 21 L 12 21 M 12.999023 3 L 18.999023 9 M 12.999023 3 L 12.999023 7.400391 C 12.999023 7.959961 12.999023 8.241211 13.110352 8.455078 C 13.204102 8.642578 13.356445 8.794922 13.546875 8.891602 C 13.760742 9 14.039062 9 14.598633 9 L 18.999023 9 M 18.999023 9 L 18.999023 11.000977 M 19.268555 19.268555 L 21 21 M 20.000977 17.499023 C 20.000977 18.881836 18.881836 20.000977 17.499023 20.000977 C 16.119141 20.000977 15 18.881836 15 17.499023 C 15 16.119141 16.119141 15 17.499023 15 C 18.881836 15 20.000977 16.119141 20.000977 17.499023 Z M 20.000977 17.499023 "
-            transform="matrix(1.333333,0,0,1.333333,0,0)" />
-        </g>
-      </svg>
-      <span class="font-semibold text-gray-800 text-lg ml-4">
-        МКБ-10
-      </span>
-    </p>
-    <hr />
-    {{ range $entry := .MkbEntries }}
-    <div class="flex flex-col items-start p-2 border-b-2 border-gray-100 hover:bg-gray-50 hover:cursor-pointer">
-      <p>
-        <span class="text-md font-semibold">{{ $entry.Ninja_column_2 }}</span>
-      </p>
-      <p>
-        <span class="text-sm text-gray-700">{{ $entry.Ninja_column_3 }}</span>
-      </p>
-    </div>
-    {{ end }}
-  </div>
-  {{ end }}
-
   {{ if .Documents }}
   <div class="bg-white rounded-lg col-start-2 col-span-3 mt-6">
     <p class="text-gray-700 p-2 flex items-start">
@@ -142,6 +142,7 @@
     {{ end }}
   </div>
   {{ end }}
+
   {{ if and (not .Drugs) (not .Documents) (not .Drugstores) (not .MkbEntries) }}
   <div class="bg-white rounded-lg col-start-2 col-span-3 text-left">
     <p class="text-gray-700 p-2 flex items-start">
