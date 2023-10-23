@@ -12,7 +12,8 @@ import (
 func Search(query string) types.HtmlReturnResult {
 	searchRes, err := meilisearchClient.Index("evidence-based-medicine").Search(query,
 		&meilisearch.SearchRequest{
-			Limit: 6,
+			Limit:                6,
+			AttributesToSearchOn: []string{"name", "url"},
 		})
 
 	if err != nil {
@@ -29,7 +30,8 @@ func Search(query string) types.HtmlReturnResult {
 	// Search drugs
 	searchRes, err = meilisearchClient.Index("drug-registry").Search(query,
 		&meilisearch.SearchRequest{
-			Limit: 6,
+			Limit:                6,
+			AttributesToSearchOn: []string{"CyrillicName", "LatinName", "Generic", "EANCode", "Content", "Manufacturer", "SolutionNumber", "FundPin"},
 		})
 
 	if err != nil {
@@ -46,7 +48,8 @@ func Search(query string) types.HtmlReturnResult {
 	// Search drugstores
 	searchRes, err = meilisearchClient.Index("drugstore-registry").Search(query,
 		&meilisearch.SearchRequest{
-			Limit: 6,
+			Limit:                6,
+			AttributesToSearchOn: []string{"Name", "Address", "Municipality"},
 		})
 
 	if err != nil {
@@ -63,7 +66,8 @@ func Search(query string) types.HtmlReturnResult {
 	// Search MKB10 Entries
 	searchRes, err = meilisearchClient.Index("temp-mkb-registry").Search(query,
 		&meilisearch.SearchRequest{
-			Limit: 6,
+			Limit:                6,
+			AttributesToSearchOn: []string{"ninja_column_2", "ninja_column_3"},
 		})
 
 	if err != nil {
