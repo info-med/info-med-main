@@ -13,5 +13,9 @@ func RenderSearchPage(c *fiber.Ctx) error {
 }
 
 func RenderAboutUsPage(c *fiber.Ctx) error {
-	return c.Render("about", fiber.Map{})
+	return c.Render("about", fiber.Map{}, "layouts/main")
+}
+
+func RenderAIPage(c *fiber.Ctx) error {
+  return c.Render("ai", fiber.Map{}, "layouts/ai")
 }
