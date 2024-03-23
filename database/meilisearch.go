@@ -30,7 +30,7 @@ func Search(query string) types.HtmlReturnResult {
 	// Search drugs
 	searchRes, err = meilisearchClient.Index("drug-registry").Search(query,
 		&meilisearch.SearchRequest{
-			Limit:                6,
+      Limit: 1000,
 			AttributesToSearchOn: []string{"CyrillicName", "LatinName", "Generic", "EANCode", "Content", "Manufacturer", "SolutionNumber", "FundPin"},
 		})
 
@@ -64,7 +64,7 @@ func Search(query string) types.HtmlReturnResult {
 	json.Unmarshal(jsonString, &drugstores)
 
 	// Search MKB10 Entries
-	searchRes, err = meilisearchClient.Index("temp-mkb-registry").Search(query,
+	/* searchRes, err = meilisearchClient.Index("temp-mkb-registry").Search(query,
 		&meilisearch.SearchRequest{
 			Limit:                50,
 			AttributesToSearchOn: []string{"ninja_column_2", "ninja_column_3"},
@@ -79,7 +79,8 @@ func Search(query string) types.HtmlReturnResult {
 	results = searchRes.Hits
 	var mkbEntries []types.MKBEntry
 	jsonString, _ = json.Marshal(results)
-	json.Unmarshal(jsonString, &mkbEntries) 
+	json.Unmarshal(jsonString, &mkbEntries) */
+  var mkbEntries []types.MKBEntry
 
 	HtmlReturnResult := types.HtmlReturnResult{
 		Documents:  documents,
