@@ -1,0 +1,150 @@
+{{ range $info := .}}
+<div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto">
+  <div class="mt-5 lg:mt-8 grid lg:grid-cols-2 gap-8 lg:gap-12">
+    <!-- <div class="grid grid-cols-2 gap-4"> -->
+      <div>
+      <div class="bg-white rounded-lg col-start-2 col-span-3 mt-6">
+    <p class="text-gray-700 p-2 flex items-start">
+      <span class="font-semibold text-gray-800 text-lg">
+        Општи Информации
+      </span>
+    </p>
+    <hr />
+      <div class="flex flex-col items-start p-2 border-b-2 border-gray-100">
+        <p class="">
+          <p class="text-gray-500 pb-1 text-xs">Кирилично име</p>
+          <span class="text-sm pl-2 font-semibold">{{ .CyrillicName }}</span>
+        </p>
+      </div>
+      <div class="flex flex-col items-start p-2 border-b-2 border-gray-100">
+        <p class="">
+          <p class="text-gray-500 pb-1 text-xs">Латинично име</p>
+          <span class="text-sm pl-2 font-semibold">{{ .LatinName }}</span>
+        </p>
+      </div>
+<div class="flex flex-col items-start p-2 border-b-2 border-gray-100">
+        <p class="">
+          <p class="text-gray-500 pb-1 text-xs">Генеричко име</p>
+          <span class="text-sm pl-2 font-semibold">{{ .GenericName }}</span>
+        </p>
+      </div>
+
+<div class="flex flex-col items-start p-2 border-b-2 border-gray-100">
+        <p class="">
+          <p class="text-gray-500 pb-1 text-xs">Јачина</p>
+          <span class="text-sm pl-2 font-semibold">{{ .Strength }}</span>
+        </p>
+      </div>
+
+<div class="flex flex-col items-start p-2 border-b-2 border-gray-100">
+        <p class="">
+          <p class="text-gray-500 pb-1 text-xs">Фармацевтска форма</p>
+          <span class="text-sm pl-2 font-semibold">{{ .Form }}</span>
+        </p>
+      </div>
+
+<div class="flex flex-col items-start p-2 border-b-2 border-gray-100">
+        <p class="">
+          <p class="text-gray-500 pb-1 text-xs">Пакување</p>
+          <span class="text-sm pl-2 font-semibold">{{ .Packaging }}</span>
+        </p>
+      </div>
+<div class="flex flex-col items-start p-2 border-b-2 border-gray-100">
+        <p class="">
+          <p class="text-gray-500 pb-1 text-xs">Состав</p>
+          <span class="text-sm pl-2 font-semibold">{{ .Content }}</span>
+        </p>
+      </div>
+<div class="flex flex-col items-start p-2 border-b-2 border-gray-100">
+        <p class="">
+          <p class="text-gray-500 pb-1 text-xs">Начин на издавање</p>
+          <span class="text-sm pl-2 font-semibold">{{ .IssuanceMethod }}</span>
+        </p>
+      </div>
+
+    </div>
+  </div>
+    
+      <div>
+      <div class="bg-white rounded-lg col-start-2 col-span-3 mt-6">
+    <p class="text-gray-700 p-2 flex items-start">
+      <span class="font-semibold text-gray-800 text-lg">
+        Детални Информации
+      </span>
+    </p>
+    <hr />
+<div class="flex flex-col items-start p-2 border-b-2 border-gray-100">
+        <p class="">
+          <p class="text-gray-500 pb-1 text-xs">EAN код</p>
+          <span class="text-sm pl-2 font-semibold">{{ .EANCode }}</span>
+        </p>
+      </div>
+<div class="flex flex-col items-start p-2 border-b-2 border-gray-100">
+        <p class="">
+          <p class="text-gray-500 pb-1 text-xs">АТЦ</p>
+          <span class="text-sm pl-2 font-semibold">{{ .ATC }}</span>
+        </p>
+      </div>
+<div class="flex flex-col items-start p-2 border-b-2 border-gray-100">
+        <p class="">
+          <p class="text-gray-500 pb-1 text-xs">Производител</p>
+          <span class="text-sm pl-2 font-semibold">{{ .Manufacturer }}</span>
+        </p>
+      </div>
+<div class="flex flex-col items-start p-2 border-b-2 border-gray-100">
+        <p class="">
+          <p class="text-gray-500 pb-1 text-xs">Носител на одобрение</p>
+          <span class="text-sm pl-2 font-semibold">{{ .ApprovalHolder }}</span>
+        </p>
+      </div>
+<div class="flex flex-col items-start p-2 border-b-2 border-gray-100">
+        <p class="">
+          <p class="text-gray-500 pb-1 text-xs">Број на решение</p>
+          <span class="text-sm pl-2 font-semibold">{{ .SolutionNumber }}</span>
+        </p>
+      </div>
+<div class="flex flex-col items-start p-2 border-b-2 border-gray-100">
+        <p class="">
+          <p class="text-gray-500 pb-1 text-xs">Датум на решение</p>
+          <span class="text-sm pl-2 font-semibold">{{ .SolutionDate }}</span>
+        </p>
+      </div>
+<div class="flex flex-col items-start p-2 border-b-2 border-gray-100">
+        <p class="">
+          <p class="text-gray-500 pb-1 text-xs">Малопродажна цена со ДДВ</p>
+          <span class="text-sm pl-2 font-semibold">{{ .RetailPrice }}</span>
+        </p>
+      </div>
+<div class="flex flex-col items-start p-2 border-b-2 border-gray-100">
+        <p class="">
+          <p class="text-gray-500 pb-1 text-xs">Големопродажна цена без ДДВ</p>
+          <span class="text-sm pl-2 font-semibold">{{ .WholesalePrice }}</span>
+        </p>
+      </div>
+<div class="flex flex-col items-start p-2 border-b-2 border-gray-100">
+        <p class="">
+          <p class="text-gray-500 pb-1 text-xs">Референтна цена</p>
+          <span class="text-sm pl-2 font-semibold">{{ .ReferencePrice }}</span>
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- sponzoooor
+
+    <div>
+      <div class="bg-white rounded-lg col-start-2 col-span-2 mt-6">
+    <p class="text-gray-700 p-2 flex items-start">
+      <span class="font-semibold text-gray-800 text-lg">
+        sponzoooor
+      </span>
+    </p>
+    </div>
+  </div>
+      </div>
+  </div> -->
+
+
+</div>
+{{ end }}

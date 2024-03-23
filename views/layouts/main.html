@@ -14,31 +14,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://unpkg.com/htmx.org@latest"></script>
-  <link href="public/output.css" rel="stylesheet">
-  <script src="public/node_modules/preline/dist/preline.js"></script>
+  <link href="/public/output.css" rel="stylesheet">
+  <script src="/public/node_modules/preline/dist/preline.js"></script>
   <script>
 
   </script>
 </head>
 
 <body class="bg-gray-100">
-  <!-- Announcement Banner -->
-  <div class="w-full mx-auto">
-    <div class="bg-blue-600 bg-no-repeat bg-cover bg-center p-4 text-center">
-      <p class="mr-2 inline-block text-white">
-        ИнфоМед сега овозможува пребарување низ MKБ-10!
-      </p>
-    </div>
-  </div>
-  <!-- End Announcement Banner -->
-
   <div class="bg-gray-100">
     <header
       class="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-white border-b border-gray-200 text-sm py-3 sm:py-0">
       <nav class="relative max-w-7xl w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8"
         aria-label="Global">
         <div class="flex items-center justify-between">
-          <a class="flex-none text-xl font-semibold" href="/" hx-boost="true" aria-label="InfoMed">ИнфоМед</a>
+          <a class="flex-none text-xl font-semibold" href="/" hx-boost="true" aria-label="InfoMed">
+            <img src="/public/logo.png" />
+          </a>
           <div class="sm:hidden">
             <button type="button"
               class="hs-collapse-toggle p-2 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm"
@@ -62,8 +54,8 @@
           <div
             class="flex flex-col gap-y-4 gap-x-0 mt-5 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:pl-7">
             <span hx-boost="true">
-              <a href="/" class="font-medium text-gray-500 sm:py-6 hover:cursor-pointer" aria-current="page">Пребарувај</a></span>
-            <a onclick="alert('Најавување во ИнфоМед се\' уште не е достапно.')"
+              <a href="/" class="flex items-center gap-x-2 font-medium text-gray-500 hover:text-blue-600 sm:my-6 sm:pl-6" aria-current="page">Пребарувај</a></span>
+            <!-- <a onclick="alert('Најавување во ИнфоМед се\' уште не е достапно.')"
               class="flex items-center gap-x-2 font-medium text-gray-500 hover:text-blue-600 sm:border-l sm:border-gray-300 sm:my-6 sm:pl-6"
               href="#">
               <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -72,7 +64,7 @@
                   d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
               </svg>
               Најава
-            </a>
+            </a> -->
           </div>
         </div>
       </nav>
@@ -80,14 +72,40 @@
 
     {{ embed }}
 
-    <footer class="w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto bg-white">
-      <!-- Grid -->
+    
+
+
+
+<footer class="fixed bottom-0 left-0 z-20 w-full p-4 bg-white border-t border-gray-200 shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800 dark:border-gray-600">
+    <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a href="infomed.mk" class="hover:underline">InfoMedMK</a>. Сите права задржани.
+    </span>
+    <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
+        <li>
+            <a href="#" class="hover:underline me-4 md:me-6">Повеќе за нас</a>
+        </li>
+        <li>
+            <a href="#" class="hover:underline me-4 md:me-6">Предложете надградба</a>
+        </li>
+        <li>
+            <a href="#" class="hover:underline me-4 md:me-6">Извори</a>
+        </li>
+        <li>
+            <a href="#" class="hover:underline me-4 md:me-6">Упатство</a>
+        </li>
+        <li>
+            <a href="#" class="hover:underline">Партнерство</a>
+        </li>
+    </ul>
+</footer>
+
+
+
+<!-- <footer class="w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto bg-white">
       <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6 mb-10">
         <div class="col-span-full hidden lg:col-span-1 lg:block">
           <a class="flex-none text-xl font-semibold" href="#" aria-label="InfoMed">ИнфоМед</a>
           <p class="mt-3 text-xs sm:text-sm text-gray-600">© 2023 Граѓанско Здружение ИнфоМед, Сите права задржани.</p>
         </div>
-        <!-- End Col -->
 
         <div>
           <h4 class="text-xs font-semibold text-gray-900 uppercase">Општо</h4>
@@ -101,7 +119,6 @@
                 onclick="alert('Моментално недостапна страна.')">Предложете надградба</a></p>
           </div>
         </div>
-        <!-- End Col -->
 
         <div>
           <h4 class="text-xs font-semibold text-gray-900 uppercase">Информации</h4>
@@ -118,7 +135,6 @@
                 onclick="alert('Моментално недостапна страна.')">ИнфоМед во пресот</a></p>
           </div>
         </div>
-        <!-- End Col -->
 
         <div>
           <h4 class="text-xs font-semibold text-gray-900 uppercase">Здружение</h4>
@@ -128,15 +144,13 @@
                 onclick="alert('Моментално недостапна страна.')">Фискални Информации</a></p>
             <p><a class="inline-flex gap-x-2 text-gray-600 hover:text-gray-800" href="#"
                 onclick="alert('Моментално недостапна страна.')">Правни Информации</a></p>
-            <!-- <p><a class="inline-flex gap-x-2 text-gray-600 hover:text-gray-800" href="#">Партнери</a></p> -->
+            <p><a class="inline-flex gap-x-2 text-gray-600 hover:text-gray-800" href="#">Партнери</a></p>
             <p><a class="inline-flex gap-x-2 text-gray-600 hover:text-gray-800" href="#"
                 onclick="alert('Моментално недостапна страна.')">Станете партнер</a></p>
           </div>
         </div>
-        <!-- End Col -->
 
       </div>
-      <!-- End Grid -->
 
       <div class="pt-5 mt-5 border-t border-gray-200">
         <div class="sm:flex sm:justify-between sm:items-center">
@@ -156,7 +170,6 @@
               </p>
             </div>
 
-            <!-- Social Brands -->
             <div class="space-x-4">
               <a class="inline-block text-gray-500 hover:text-gray-800" href="#">
                 <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -180,12 +193,10 @@
                 </svg>
               </a>
             </div>
-            <!-- End Social Brands -->
           </div>
-          <!-- End Col -->
         </div>
       </div>
-    </footer>
+</footer> -->
 </body>
 
 </html>

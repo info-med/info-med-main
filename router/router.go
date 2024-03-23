@@ -8,12 +8,13 @@ import (
 func InitRoutes(app *fiber.App) {
 	// Main Routes
 	app.Get("/search", handlers.HandleSearch)
-	app.Get("/drugInfo", handlers.HandleGetDrugInfo)
+	//app.Get("/drugInfo", handlers.HandleGetDrugInfo)
 	app.Get("/drugstoreInfo", handlers.HandleGetDrugstoreInfo)
 
 	// Rendering Routes
 	app.Get("/", handlers.RenderHomePage)
 	app.Get("/renderSearch", handlers.RenderSearchPage)
+  app.Get("/get/drug/:id", handlers.RenderGetDrugInfo)
 	app.Get("/about", handlers.RenderAboutUsPage)
 
   // AI

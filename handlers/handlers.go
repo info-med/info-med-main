@@ -17,18 +17,6 @@ func HandleSearch(c *fiber.Ctx) error {
 	return c.Status(fiber.StatusBadRequest).JSON(map[string]string{"error": "No search query provided"})
 }
 
-func HandleGetDrugInfo(c *fiber.Ctx) error {
-	query := c.Query("drugId")
-
-	if query != "" {
-		res := database.GetDrugInfo(query)
-
-		return c.Render("drugModal", res)
-	}
-
-	return c.Status(fiber.StatusBadRequest).JSON(map[string]string{"error": "No drug ID provided"})
-}
-
 func HandleGetDrugstoreInfo(c *fiber.Ctx) error {
 	query := c.Query("drugstoreId")
 

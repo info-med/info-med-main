@@ -51,7 +51,7 @@
     </p>
     <hr />
     {{ range $drug := .Drugs }}
-    <form hx-get="/drugInfo" hx-trigger="click" hx-target="#drug-modal">
+    <a hx-boost="true" href="/get/drug/{{ $drug.Id }}">
       <input type="hidden" name="drugId" value="{{ $drug.Id }}" />
       <div class="flex flex-col items-start p-2 border-b-2 border-gray-100 hover:bg-gray-50 hover:cursor-pointer">
         <p class="">
@@ -65,7 +65,7 @@
           <span class="text-sm text-gray-700">Фармацевтска Форма: {{ $drug.Form }}</span>
         </p>
       </div>
-    </form>
+    </a>
     {{ end }}
   </div>
   {{ end }}
@@ -147,7 +147,8 @@
   <div class="bg-white rounded-lg col-start-2 col-span-3 text-left">
     <p class="text-gray-700 p-2 flex items-start">
       <span class="font-semibold text-gray-800 text-lg ml-4">
-        Нема резултати. Можете да пребарувате по:
+        Нема резултати за побараното. <small class="text-sm">(Напомена: Пребарувањето е сензитивно на латиница/кирилица.)</small><br/><br/>
+        Можете да пребарувате по:
       </span>
     </p>
     <div class="text-sm text-gray-500 pl-6">
