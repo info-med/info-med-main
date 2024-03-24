@@ -29,7 +29,10 @@ func RenderUpgradePage(c *fiber.Ctx) error {
 	return c.Render("upgrade", fiber.Map{}, "layouts/main")
 }
 
-
 func RenderAIPage(c *fiber.Ctx) error {
 	return c.Render("ai", fiber.Map{}, "layouts/ai")
+}
+
+func RenderSourcesPage(c *fiber.Ctx) error {
+	return c.Render("sources", fiber.Map{}, "layouts/main")
 }
