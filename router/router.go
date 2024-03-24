@@ -16,6 +16,7 @@ func InitRoutes(app *fiber.App) {
 	app.Get("/renderSearch", handlers.RenderSearchPage)
   app.Get("/get/drug/:id", handlers.RenderGetDrugInfo)
 	app.Get("/about", handlers.RenderAboutUsPage)
+  app.Get("/upgrade", handlers.RenderUpgradePage)
 
   // AI
   app.Get("/ai", handlers.RenderAIPage)

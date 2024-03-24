@@ -25,6 +25,11 @@ func RenderAboutUsPage(c *fiber.Ctx) error {
 	return c.Render("about", fiber.Map{}, "layouts/main")
 }
 
+func RenderUpgradePage(c *fiber.Ctx) error {
+	return c.Render("upgrade", fiber.Map{}, "layouts/main")
+}
+
+
 func RenderAIPage(c *fiber.Ctx) error {
 	return c.Render("ai", fiber.Map{}, "layouts/ai")
 }
