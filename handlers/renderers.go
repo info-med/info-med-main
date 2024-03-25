@@ -6,11 +6,7 @@ import (
 )
 
 func RenderHomePage(c *fiber.Ctx) error {
-	return c.Render("index", fiber.Map{}, "layouts/main")
-}
-
-func RenderSearchPage(c *fiber.Ctx) error {
-	return c.Render("search", fiber.Map{})
+	return c.Render("search", fiber.Map{}, "layouts/main")
 }
 
 func RenderGetDrugInfo(c *fiber.Ctx) error {

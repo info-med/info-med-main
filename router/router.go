@@ -13,7 +13,6 @@ func InitRoutes(app *fiber.App) {
 
 	// Rendering Routes
 	app.Get("/", handlers.RenderHomePage)
-	app.Get("/renderSearch", handlers.RenderSearchPage)
 	app.Get("/get/drug/:id", handlers.RenderGetDrugInfo)
 	app.Get("/about", handlers.RenderAboutUsPage)
 	app.Get("/upgrade", handlers.RenderUpgradePage)
