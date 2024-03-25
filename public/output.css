@@ -645,6 +645,10 @@ video {
   margin: 0.75rem;
 }
 
+.m-6 {
+  margin: 1.5rem;
+}
+
 .mx-4 {
   margin-left: 1rem;
   margin-right: 1rem;
@@ -1217,6 +1221,10 @@ video {
   padding: 1rem;
 }
 
+.p-6 {
+  padding: 1.5rem;
+}
+
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
@@ -1632,10 +1640,6 @@ video {
 }
 
 @media (min-width: 640px) {
-  .sm\:col-start-1 {
-    grid-column-start: 1;
-  }
-
   .sm\:my-6 {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
@@ -1834,10 +1838,6 @@ video {
 
   .lg\:col-span-1 {
     grid-column: span 1 / span 1;
-  }
-
-  .lg\:col-start-1 {
-    grid-column-start: 1;
   }
 
   .lg\:mx-auto {

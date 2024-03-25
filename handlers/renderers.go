@@ -17,6 +17,15 @@ func RenderGetDrugInfo(c *fiber.Ctx) error {
 	return c.Render("drugInfo", res, "layouts/main")
 }
 
+func RenderDrugstorePage(c *fiber.Ctx) error {
+	id := c.Params("id")
+
+	res := database.GetDrugstoreInfo(id)
+
+	return c.Render("drugstoreInfo", res, "layouts/main")
+}
+
+
 func RenderAboutUsPage(c *fiber.Ctx) error {
 	return c.Render("about", fiber.Map{}, "layouts/main")
 }
