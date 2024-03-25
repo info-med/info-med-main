@@ -1,6 +1,6 @@
 {{ range $info := .}}
 <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto pb-36">
-  <div class="mt-5 lg:mt-8 grid lg:grid-cols-2 gap-8 lg:gap-12">
+  <div class="mt-5 lg:mt-8 grid lg:grid-cols-3 gap-8 lg:gap-12">
       <div>
       <div class="bg-white rounded-lg col-start-2 col-span-3 mt-6">
       <p class="text-gray-700 p-2 flex items-start">
@@ -126,7 +126,34 @@
       </div>
     </div>
 
+      </div>
+    <div class="mt-6 sm:col-start-1">
+            <a class="group flex flex-row bg-gray-50 border shadow-sm rounded-xl hover:shadow-md transition"
+              href="https://lekovi.zdravstvo.gov.mk{{ .UserGuide }}" target="_blank">
+              <div class="p-4 md:p-5">
+                <div class="flex">
+                  <div class="grow ml-5">
+                    <h3 class="group-hover:text-blue-600 font-semibold text-gray-800">
+                      Превземи Упатство за Користење
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </a>
+      <a class="mt-4 group flex flex-row bg-gray-50 border shadow-sm rounded-xl hover:shadow-md transition"
+              href="https://lekovi.zdravstvo.gov.mk{{ .SummaryReport }}" target="_blank">
+              <div class="p-4 md:p-5">
+                <div class="flex">
+                  <div class="grow ml-5">
+                    <h3 class="group-hover:text-blue-600 font-semibold text-gray-800">
+                      Превземи Збирен Извештај
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </a>
 
+    </div>
   </div>
 </div>
 {{ end }}
